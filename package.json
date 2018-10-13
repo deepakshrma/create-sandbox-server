@@ -1,0 +1,24 @@
+{
+  "name": "cst-json-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/nodemon/bin/nodemon.js .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.dev.apps.cs.sgp.dbs.com/framework/cst-json-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "2.8.4",
+    "json-server": "0.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  }
+}

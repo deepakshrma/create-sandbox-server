@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <title>Sandbox Server</title>
+</head>
+
+<body>
+    <div class="conainer">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Routes</li>
+            </ol>
+        </nav>
+        <h3>Create Sandbox Server
+            <small class="text-muted">Now So easy</small>
+        </h3>
+        <div class="alert alert-info" role="alert">
+            <h4>All Routes</h4>
+        </div>
+
+        <table class="table table-bordered" id="routes">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Endpoint Root Name</th>
+                    <th scope="col">Endpoint Name</th>
+                    <th scope="col">URL</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+<script>
+    $(() => {
+        var mapRoutes = function (routes) {
+            var routeHtml = "";
+            var counter = 0;
+            Object.keys(routes).sort().forEach(function (key) {
+                var route = routes[key];
+                if (Array.isArray(route)) {
+                    route.forEach(function (r) {
+                        counter += 1
+                        var path = "/" + key + '/' + r
+                        routeHtml += '<tr><th scope="row">' + counter + '</th><td>' + key +
+                            '</td><td>' + path + '</td><td><a target="_blank" href="' + path + '">' + path +
+                            '</a></td></tr>';
+                    })
+                }
+            });
+            $('#routes tbody').html("");
+            $('#routes tbody').append(routeHtml);
+        }
+        var fetchRoutes = function () {
+            $.getJSON("/routes", function (data) {
+                if (data && Object.keys(data).length > 0) {
+                    mapRoutes(data)
+                }
+            });
+        }
+        setInterval(fetchRoutes, 2000);
+        fetchRoutes();
+
+    })
+</script>
+
+</html>

@@ -1,0 +1,7 @@
+{
+    "accounts": [{
+        "id": "1",
+        "name": "Saving Accounts",
+        "balance": 123.0
+    }]
+}
