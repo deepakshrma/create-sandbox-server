@@ -59,7 +59,8 @@
                         counter += 1
                         var path = "/" + key + '/' + r
                         routeHtml += '<tr><th scope="row">' + counter + '</th><td>' + key +
-                            '</td><td>' + path + '</td><td><a target="_blank" href="' + path + '">' + path +
+                            '</td><td>' + path + '</td><td><a target="_blank" href="' +
+                            path + '">' + path +
                             '</a></td></tr>';
                     })
                 }
@@ -74,9 +75,8 @@
                 }
             });
         }
-        setInterval(fetchRoutes, 2000);
+        setInterval(fetchRoutes, 10000);
         fetchRoutes();
-
     })
 </script>
 
